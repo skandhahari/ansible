@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  tasks:
+    - ec2:
+        key_name: ec2-key
+        instance_type: t2.micro
+        image: ami-0be2609ba883822ec
+        region: us-east-1
+        count: 1
+        #exact_count: 2
+        count_tag: {type: http}
+        vpc_subnet_id: subnet-04ac2225
+        assign_public_ip: yes
+        group: ["WEB-DMZ"]
+        instance_tags: {type: http, Env: QA}
+        wait: yes
+      register: ec2_output
+    - debug: var=ec2_output

@@ -1,0 +1,4 @@
+---
+- hosts: qa
+  tasks:
+      - debug: var=ansible_system
